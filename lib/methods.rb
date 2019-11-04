@@ -25,15 +25,15 @@ class Methods
   end
 
   def init_board(grid)
-    @board = Array.new(grid) { '-' }
+    @board = Array.new(grid) { "-" }
   end
 
-  def set_input(index, input = 'X')
+  def set_input(index, input = "X")
     @board[index] = input
   end
 
   def space_filled?(index)
-    @board[index] == 'X' || @board[index] == 'O'
+    @board[index] == "X" || @board[index] == "O"
   end
 
   def board_index(input_index)
@@ -45,14 +45,14 @@ class Methods
   end
 
   def turn_count
-    @board.select { |e| e.include?('X') || e.include?('O') }.size
+    @board.select { |e| e.include?("X") || e.include?("O") }.size
   end
 
   def current_player
     player = if (turn_count % 2).zero?
-               'X'
+               "X"
              else
-               'O'
+               "O"
              end
     player
   end
