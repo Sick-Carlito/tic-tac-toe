@@ -6,7 +6,7 @@ require_relative '../lib/methods.rb'
 
 class UserInterface
   def initialize
-    @game = Game.new
+    @game = Methods.new
     @board = @game.init_board(9)
   end
 
@@ -62,7 +62,7 @@ class UserInterface
       display_board
       turn
     end
-    display_board
+    
   end
 
   # Turn method is called for players to fill the board until @game.over? method is true
