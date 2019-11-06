@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './player.rb'
+require_relative "./player.rb"
 
 class GameManager
   attr_reader :board, :player_one, :player_two, :X, :O
