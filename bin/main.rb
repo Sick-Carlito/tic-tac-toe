@@ -7,7 +7,7 @@ require_relative '../lib/player.rb'
 
 class UserInterface
   def initialize
-    @game = Methods.new(@players)
+    @game = GameManager.new(@players)
   end
 
   #instructions to player
