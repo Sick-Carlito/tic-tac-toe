@@ -2,6 +2,12 @@
 
 require_relative "./player.rb"
 
+class Matcher
+  def marker(grid,player = :X)
+    Matcher.new(grid,player)
+  end
+end
+
 class GameManager
   attr_reader :board, :player_one, :player_two, :X, :O
   def initialize(players, board = (1..9).to_a)
