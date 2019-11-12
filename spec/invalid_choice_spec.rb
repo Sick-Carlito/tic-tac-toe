@@ -1,5 +1,6 @@
-require_relative "../bin/main"
+# frozen_string_literal: true
 
+require_relative "../bin/main"
 
 describe ".GameManager" do
   context ' grid ["XOX","OXO","XXX"]' do
