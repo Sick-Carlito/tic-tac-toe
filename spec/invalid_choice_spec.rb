@@ -27,7 +27,6 @@ describe ".GameManager" do
       it "current player should be X" do
         expect(grid.current_player).to eq(:X)
       end
-      
     end
   end
 end
