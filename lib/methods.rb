@@ -9,11 +9,11 @@ class Board
   end
 
   def display_board
-    disp =  " #{@game_board[0]}|#{@game_board[1]}|#{@game_board[2]}\n " \
-            "---------\n" \
-            " #{@game_board[3]}|#{@game_board[4]}|#{@game_board[5]}\n " \
-            "---------\n" \
-            " #{@game_board[6]}|#{@game_board[7]}|#{@game_board[8]} "
+    interface = "#{ @game_board[0] }|#{ @game_board[1] }|#{ @game_board[2] }\n"\
+            "---------\n"\
+            "#{ @game_board[3] }|#{ @game_board[4] }|#{ @game_board[5] }\n"\
+            "---------\n"\
+            "#{ @game_board[6] }|#{ @game_board[7] }|#{ @game_board[8] }"
   
   end
 
@@ -59,6 +59,6 @@ class Player
       puts "Please input another number.\n\n"
       @choice = gets.to_i
     end
-      @choice
+    @choice
   end
 end
