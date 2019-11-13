@@ -1,80 +1,65 @@
-# frozen_string_literal: true
 
-require_relative "./player.rb"
 
-class GameManager
-  attr_reader :board, :player_one, :player_two, :X, :O
-  def initialize(players, board = (1..9).to_a)
-    @board = board
-    @player_one = Player.new(players)
-    @player_two = Player.new(players)
+
+class Board
+  attr_accessor :game_board, :board_num
+  def initialize
+    @game_board = [" "," "," "," "," "," "," "," "," "]
+    @board_num = []
   end
 
-  WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [6, 4, 2],
-    [0, 4, 8]
-  ].freeze
+  def display_board
+    disp =  " #{@game_board[0]} | #{@game_board[1]} | #{@game_board[2]}\n " +
+            "---------\n" +
+            " #{@game_board[3]} | #{@game_board[4]} | #{@game_board[5]}\n " +
+            "---------\n" +
+            " #{@game_board[6]} | #{@game_board[7]} | #{@game_board[8]} "
+    return disp
+  end
 
-  def won?
-    WIN_COMBINATIONS.detect do |combo|
-      @board[combo[0]] == @board[combo[1]] &&
-        @board[combo[1]] == @board[combo[2]] &&
-        space_filled?(combo[0])
+  def add_to_board(choice, player)
+    @game_board[choice-1] = player
+  end
+
+  def count_board(player)
+    @board_num = []
+    9.times do |i|
+        if @game_board[i] == player
+            @board_num << i
+        else
+            @board_num << nil
+        end
     end
   end
 
-  def set_input(index, input = :X)
-    @board[index] = input
+  def has_winner
+    WIN.any? {|line| (line - @board_num) == [] }
+  end
+end
+
+class Player
+  attr_accessor :choice, :player
+  def initialize
+    @choice = nil
+    @player = 'X'
   end
 
-  def space_filled?(index)
-    @board[index] == :X || @board[index] == :O
-  end
-
-  def board_index(input_index)
-    input_index.to_i - 1
-  end
-
-  def valid_move?(position)
-    position.between?(0, 8) && !space_filled?(position)
-  end
-
-  def turn_count
-    @board.select { |e| e == :X || e == :O }.size # rubocop:disable Style/MultipleComparison
-  end
-
-  def current_player
-    player = if (turn_count % 2).zero?
-               :X
-             else
-               :O
-             end
-    player
-  end
-
-  def full?
-    turn_count == 9
-  end
-
-  def draw?
-    !won? && full?
-  end
-
-  def over?
-    won? || full? || draw?
-  end
-
-  def winner?
-    if @board[won?.first] == :X
-      :X
+  def switch
+    if $count % 2 == 0
+      @player = 'X'
     else
-      :O
+      @player = 'O'
     end
   end
+
+  def num_choice(game_board)
+    @choice = gets.to_i
+    until (game_board[@choice-1] == " ") && (@choice.between?(1,9))
+      puts "\nERROR: Number needs to be between 1-9 and not used already...\n"
+      puts "Please input another number.\n\n"
+      @choice = gets.to_i
+    end
+    return @choice
+  end
+
 end
