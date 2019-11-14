@@ -70,11 +70,10 @@ RSpec.describe Player do
       end
     end
   end
-    
+  
   describe "#switch" do
     context "when count is even" do
       it "returns 'X' as the player" do
-        
         player.switch
         expect(player.player_one).to eq("X")
       end
@@ -82,14 +81,13 @@ RSpec.describe Player do
 
     context "when count is odd" do
       it "returns 'O' as the player" do
-        
         player.switch
         expect(player.player_two).to eq("O")
       end
     end
   end
 
-  describe "#num_choice" do 
+  describe "#num_choice" do
     context "when choice is valid" do
       it "sets and returns player choice" do
         allow(player).to receive(:gets).and_return("1".to_i)
@@ -98,7 +96,7 @@ RSpec.describe Player do
       end
     end
 
-    context "when choice is invalid" do 
+    context "when choice is invalid" do
       it "asks for choice until vaild, should return error message twice in terminal" do
         allow(player).to receive(:gets).at_most(2).and_return("e", "0".to_i, "5".to_i)
         player.num_choice(game_board_full)

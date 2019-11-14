@@ -8,12 +8,11 @@ class Board
   end
 
   def display_board
-    puts "#{ @game_board[0] }|#{ @game_board[1] }|#{ @game_board[2] }\n"\
+    puts "#{@game_board[0]}|#{ @game_board[1]}|#{@game_board[2]}\n"\
      "---------\n"\
-     "#{ @game_board[3] }|#{ @game_board[4] }|#{ @game_board[5] }\n"\
+     "#{@game_board[3]}|#{@game_board[4]}|#{ @game_board[5]}\n"\
      "---------\n"\
-     "#{ @game_board[6] }|#{ @game_board[7] }|#{ @game_board[8] }"
-  
+     "#{@game_board[6]}|#{@game_board[7]}|#{@game_board[8]}"
   end
 
   def add_to_board(choice, player)
@@ -48,7 +47,7 @@ class Player
   def switch
     count = 0
     if (count % 2).zero?
-      @player_one 
+      @player_one
     else
       @player_two
     end
