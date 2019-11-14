@@ -70,7 +70,6 @@ RSpec.describe Player do
       end
     end
   end
-  
   describe "#switch" do
     context "when count is even" do
       it "returns 'X' as the player" do
