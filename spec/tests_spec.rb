@@ -5,9 +5,7 @@ require "rspec"
 
 WIN = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-     [0, 4, 8], [2, 4, 6]].freeze
-
-$count = 0
+       [0, 4, 8], [2, 4, 6]].freeze
 
 RSpec.describe Board do
   let!(:board) { Board.new }
@@ -48,7 +46,6 @@ RSpec.describe Board do
         expect(win).to eq(true)
       end
     end
-    
     context "when not win condition" do
       it "returns false after confirming no win condition" do
         board_num = [nil, 1, nil, 3, nil, nil, 6, nil, 8, 9]
@@ -60,7 +57,6 @@ RSpec.describe Board do
 end
 
 RSpec.describe Player do
-
   let!(:player) { Player.new }
   let(:game_board_empty) { [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "] }
   let(:game_board_full) { ["0", "1", "2", "3", " ", "5", "6", "7", "8", "9"] }
@@ -68,7 +64,8 @@ RSpec.describe Player do
   describe "#initialize" do
     context "on game start-up" do
       it "initializes player and board choice" do
-        expect(player.player).to eq("X")
+        expect(player.player_one).to eq("X")
+        expect(player.player_two).to eq("O")
         expect(player.choice).to eq(nil)
       end
     end
@@ -77,17 +74,17 @@ RSpec.describe Player do
   describe "#switch" do
     context "when count is even" do
       it "returns 'X' as the player" do
-        $count = 0
+        
         player.switch
-        expect(player.player).to eq("X")
+        expect(player.player_one).to eq("X")
       end
     end
 
     context "when count is odd" do
       it "returns 'O' as the player" do
-        $count = 1
+        
         player.switch
-        expect(player.player).to eq("O")
+        expect(player.player_two).to eq("O")
       end
     end
   end
@@ -106,7 +103,7 @@ RSpec.describe Player do
         allow(player).to receive(:gets).at_most(2).and_return("e", "0".to_i, "5".to_i)
         player.num_choice(game_board_full)
         expect(player.choice).to eq(5)
-            end
+      end
     end
   end
 end

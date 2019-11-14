@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 class Board
   attr_accessor :game_board, :board_num
   def initialize
@@ -9,11 +8,11 @@ class Board
   end
 
   def display_board
-    interface = "#{ @game_board[0] }|#{ @game_board[1] }|#{ @game_board[2] }\n"\
-            "---------\n"\
-            "#{ @game_board[3] }|#{ @game_board[4] }|#{ @game_board[5] }\n"\
-            "---------\n"\
-            "#{ @game_board[6] }|#{ @game_board[7] }|#{ @game_board[8] }"
+    puts "#{ @game_board[0] }|#{ @game_board[1] }|#{ @game_board[2] }\n"\
+     "---------\n"\
+     "#{ @game_board[3] }|#{ @game_board[4] }|#{ @game_board[5] }\n"\
+     "---------\n"\
+     "#{ @game_board[6] }|#{ @game_board[7] }|#{ @game_board[8] }"
   
   end
 
@@ -38,17 +37,20 @@ class Board
 end
 
 class Player
-  attr_accessor :choice, :player
+  attr_accessor :choice, :player_one, :player_two
   def initialize
     @choice = nil
-    @player = "X"
+    @player_one = "X"
+    @player_two = "O"
+
   end
 
   def switch
-    if ($count % 2).zero?
-      @player = "X"
+    count = 0
+    if (count % 2).zero?
+      @player_one 
     else
-      @player = "O"
+      @player_two
     end
   end
 

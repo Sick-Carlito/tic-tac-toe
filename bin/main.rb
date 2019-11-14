@@ -7,8 +7,10 @@ WIN = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
        [0, 3, 6], [1, 4, 7], [2, 5, 8],
        [0, 4, 8], [2, 4, 6]]
 
-$count = 0
+
 class Tic
+
+  count = 0
 
   def initialize
     @board = Board.new
@@ -21,7 +23,7 @@ class Tic
   end
 
   def game_draw?
-    $count >= 9
+    count >= 9
   end
 
   def game_winner?
@@ -30,7 +32,7 @@ class Tic
 
   def run
     intro
-    while $count < 9
+    while count < 9
       @player.switch
       puts "\nPlayer #{@player.player}, pick a number between 1-9: \n\n"
       @player.num_choice(@board.game_board)
@@ -45,7 +47,7 @@ class Tic
         puts "\nGAME OVER!\n\nWinner player #{@player.player}!\n\n"
         break
       end
-      $count += 1
+      count += 1
     end
     if game_draw?
       puts "\nGame is a draw...\n\n"
