@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require_relative "../lib/methods.rb"
 
 WIN = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
