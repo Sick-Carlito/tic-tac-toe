@@ -38,10 +38,17 @@ RSpec.describe Board do
     end
   end
 
-  describe "#has_winner?" do
+  describe "#winner?" do
     context "when win condition" do
       it "returns true after confiriming win condition" do
         board_num = [0, 1, 2, nil, nil, nil, nil, nil, nil]
+        board_num = [nil, nil, nil, 3, 4, 5, nil, nil, nil]
+        board_num = [nil, nil, nil, nil, nil, nil, 6, 7, 8]
+        board_num = [0, nil, nil, 3, nil, nil, 6, nil, nil]
+        board_num = [nil, 1, nil, nil, 4, nil, nil, 7, nil]
+        board_num = [nil, nil, 2, nil, nil, 5, nil, nil, 8]
+        board_num = [0, nil, nil, nil, 4, nil, nil, nil, 8]
+        board_num = [nil, nil, 2, nil, 4, nil, 6, nil, nil]
         win = WIN.any? { |line| (line - board_num) == [] }
         expect(win).to eq(true)
       end
