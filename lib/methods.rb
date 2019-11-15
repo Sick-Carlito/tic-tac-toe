@@ -25,7 +25,6 @@ class Board
         @board_num << if @game_board[i] == player
                          i
                       else
-                        nil
                       end
     end
   end
