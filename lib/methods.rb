@@ -24,7 +24,7 @@ class Board
     9.times do |i|
         @board_num << if @game_board[i] == player
                          i
-                       end
+                      end
     end
   end
 
