@@ -22,9 +22,8 @@ class Board
   def count_board(player)
     @board_num = []
     9.times do |i|
-        @board_num << if @game_board[i] == player
-                         i
-                      end
+        @board_num << i if @game_board[i] == player
+        @board_num << nil if @game_board[i] != player
     end
   end
 
