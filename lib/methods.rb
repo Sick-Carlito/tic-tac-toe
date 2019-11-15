@@ -23,10 +23,10 @@ class Board
     @board_num = []
     9.times do |i|
         @board_num << if @game_board[i] == player
-          i
-        else
-          nil
-        end
+                         i
+                      else
+                        nil
+                      end
     end
   end
 

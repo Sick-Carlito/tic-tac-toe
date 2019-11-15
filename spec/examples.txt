@@ -1,13 +1,13 @@
 example_id                    | status | run_time        |
 ----------------------------- | ------ | --------------- |
-./spec/tests_spec.rb[1:1:1]   | passed | 0.00037 seconds |
-./spec/tests_spec.rb[1:2:1]   | passed | 0.00366 seconds |
-./spec/tests_spec.rb[1:3:1]   | passed | 0.00024 seconds |
-./spec/tests_spec.rb[1:4:1]   | passed | 0.00032 seconds |
-./spec/tests_spec.rb[1:5:1:1] | passed | 0.00026 seconds |
-./spec/tests_spec.rb[1:5:2:1] | passed | 0.00112 seconds |
+./spec/tests_spec.rb[1:1:1]   | passed | 0.00023 seconds |
+./spec/tests_spec.rb[1:2:1]   | passed | 0.00018 seconds |
+./spec/tests_spec.rb[1:3:1]   | passed | 0.00331 seconds |
+./spec/tests_spec.rb[1:4:1]   | passed | 0.00034 seconds |
+./spec/tests_spec.rb[1:5:1:1] | passed | 0.00116 seconds |
+./spec/tests_spec.rb[1:5:2:1] | passed | 0.00026 seconds |
 ./spec/tests_spec.rb[2:1:1:1] | passed | 0.00023 seconds |
-./spec/tests_spec.rb[2:2:1:1] | passed | 0.00026 seconds |
-./spec/tests_spec.rb[2:2:2:1] | passed | 0.00026 seconds |
-./spec/tests_spec.rb[2:3:1:1] | passed | 0.00071 seconds |
-./spec/tests_spec.rb[2:3:2:1] | passed | 0.01352 seconds |
+./spec/tests_spec.rb[2:2:1:1] | passed | 0.00017 seconds |
+./spec/tests_spec.rb[2:2:2:1] | passed | 0.00018 seconds |
+./spec/tests_spec.rb[2:3:1:1] | passed | 0.00066 seconds |
+./spec/tests_spec.rb[2:3:2:1] | passed | 0.01381 seconds |
