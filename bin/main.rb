@@ -1,97 +1,59 @@
 #!/usr/bin/env ruby
-
 # frozen_string_literal: true
 
-require_relative '../lib/methods.rb'
-require_relative '../lib/player.rb'
+require_relative "../lib/methods.rb"
 
-class UserInterface
+WIN = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+       [0, 3, 6], [1, 4, 7], [2, 5, 8],
+       [0, 4, 8], [2, 4, 6]]
+
+
+class Tic
+
+  count = 0
+
   def initialize
-    @game = GameManager.new(@players)
+    @board = Board.new
+    @player = Player.new
   end
 
-  #instructions to player
-  def welcome
-    puts ' '
-    puts '==========TIC-TAC-TOE=========='
-    puts 'Welcome to tic tac toe'
-    puts '-------------INSTRUCTIONS---------------'
-    puts 'The first player is X'
-    puts 'Choose numbers from 1 to 9 to select desired cell'
-    puts 'No duplicate numbers are allowed'
-    puts '--------------------------------'
-    # Request for player names and save them to p1 and p2
-    puts 'Player 1 please enter your name: '
-    @player_one = gets.chomp
-
-    puts 'Player 2 please enter your name: '
-    @player_two = gets.chomp
-
-    puts "Player one X is #{@player_one} vs Player two O is #{@player_two}"
-    p "Here's the board"
-    display_board
+  def intro
+    puts "\nWelcome to tic tac toe in Ruby!"
+    puts "Press 'ctrl + c' to exit at anytime.\n"
   end
 
-  def end
-      puts 'Thank you for playing Tic Tac Toe'
+  def game_draw?
+    count >= 9
   end
 
-  #Tic Tac Toe Board
-  def display_board
-    puts " #{@game.board[0]} | #{@game.board[1]} | #{@game.board[2]} "
-
-    puts ' ---------- '
-
-    puts " #{@game.board[3]} | #{@game.board[4]} | #{@game.board[5]} "
-
-    puts ' ---------- '
-
-    puts " #{@game.board[6]} | #{@game.board[7]} | #{@game.board[8]} "
+  def game_winner?
+    @board.has_winner
   end
 
-  def position
-    current = @game.current_player
-    if current == :X
-      print "\n #{@player_one}, choose a position between 1-9: "
-    else
-      print "\n #{@player_two}, choose a position between 1-9: "
-    end
-  end
-
-    # Game begins, player 1 starts choosing between 1-9
-  # if the input is different valid_move returns false and input is request again
-  def turn
-    position
-    spot = gets.strip
-    spot = @game.board_index(spot)
-    if @game.valid_move?(spot)
-      @game.set_input(spot, @game.current_player)
-      display_board
-    else
-      puts 'This spot has been taken or you inputed a wrong value'
-      puts 'Please enter a valid option between 1-9'
-      display_board
-      turn
-    end
-  end
-
-  # Turn method is called for players to fill the board until @game.over? method is true
-  # If total moves = 9 and no combinations detected, its a draw, if a combination is detected, @game.won is executed
-  def play
-    turn until @game.over?
-      if @game.won?
-        if @game.winner? == :X
-        puts "CONGRATULATIONS #{@player_one}! You Won"
-        else
-          puts "CONGRATULATIONS #{@player_two}! You Won"
-        end
-      elsif @game.draw?
-        puts "It's a draw!"
+  def run
+    intro
+    while count < 9
+      @player.switch
+      puts "\nPlayer #{@player.player}, pick a number between 1-9: \n\n"
+      @player.num_choice(@board.game_board)
+      @board.add_to_board(
+        @player.choice,
+        @player.player,
+      )
+      puts
+      puts @board.display_board
+      @board.count_board(@player.player)
+      if game_winner?
+        puts "\nGAME OVER!\n\nWinner player #{@player.player}!\n\n"
+        break
       end
+      count += 1
+    end
+    if game_draw?
+      puts "\nGame is a draw...\n\n"
+    end
   end
 end
 
-game = UserInterface.new
-game.welcome
-game.play
-game.end
+tic = Tic.new
+tic.run
